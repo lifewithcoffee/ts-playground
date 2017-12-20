@@ -1,5 +1,5 @@
 import {Factorial} from './factorial';
-import {FileNavigator} from './fileNavigator';
+import {FileOperator} from './fileOperator';
 
 class Cmds {
     help() {
@@ -23,9 +23,17 @@ class Cmds {
 
     }
 
-    listFiles(){
+    operateFile(){
         var arg = argc[1];
-        new FileNavigator().listFiles(arg);
+        var file_operator = new FileOperator();
+
+        if(file_operator[arg] == null) {
+            console.log("There in no such command: ${arg};");
+        }else{
+            console.log(`Executing command: ${file_operator.constructor.name}.${arg}`);
+            console.log("-----------------------------");
+            file_operator[arg]();
+        }
     }
 }
 
@@ -45,12 +53,12 @@ export class Main{
         if(cmd[arg] == null) {
             console.log("There in no such command: ${arg}; Try command 'help' for more info.");
         }else{
-            console.log(`Executing command: ${arg}`);
+            console.log(`Executing command: ${cmd.constructor.name}.${arg}`);
             console.log("-----------------------------");
             cmd[arg]();
         }
     }
 }
 
-const argc = process.argv.splice(2);
+export const argc = process.argv.splice(2);
 Main.main(argc);
