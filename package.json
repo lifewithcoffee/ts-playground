@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --outDir bin"
+    "build": "tsc --outDir bin",
+    "build-watch": "tsc -w --outDir bin"
   },
   "author": "",
   "license": "ISC",
