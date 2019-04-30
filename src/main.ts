@@ -1,11 +1,18 @@
 import {Factorial} from './factorial';
 // import {FileOperator} from './fileOperator';
 
+
+function getCommands(instance) {
+    var list_without_constructor = Object.getOwnPropertyNames(Object.getPrototypeOf(instance)).splice(1); // the first one is 'constructor()' if instance is an instance of a class
+    return list_without_constructor;
+}
+
+
 class Cmds {
     help() {
         console.log("Listing command methods:");
 
-        var list_without_constructor = Object.getOwnPropertyNames(Object.getPrototypeOf(this)).splice(1);
+        var list_without_constructor = getCommands(this);
         console.log(list_without_constructor);
     }
     
@@ -22,20 +29,20 @@ class Cmds {
 
     }
 
-    operateFile(argSubCmd){
-        console.log("operateFile() called");
-        import('./fileOperator').then((m) => {
-            var file_operator = new m.FileOperator();
+    // operateFile(argSubCmd){
+    //     console.log("operateFile() called");
+    //     import('./fileOperator').then((m) => {
+    //         var file_operator = new m.FileOperator();
 
-            if(file_operator[argSubCmd] == null) {
-                console.log(`There is no such command: ${argSubCmd};`);
-            }else{
-                console.log(`Executing command: ${file_operator.constructor.name}.${argSubCmd}`);
-                console.log("-----------------------------");
-                file_operator[argSubCmd]();
-            }
-        });
-    }
+    //         if(file_operator[argSubCmd] == null) {
+    //             console.log(`There is no such command: ${argSubCmd};`);
+    //         }else{
+    //             console.log(`Executing command: ${file_operator.constructor.name}.${argSubCmd}`);
+    //             console.log("-----------------------------");
+    //             file_operator[argSubCmd]();
+    //         }
+    //     });
+    // }
     
     startExpress() {
         import('./index');
@@ -44,7 +51,6 @@ class Cmds {
 
 class Main{
     static main(argc:string[]) {
-
         if(argc.length < 1){
             console.error(`Invalid number of arguments ${argc}`);
             process.exit(1);
@@ -54,6 +60,20 @@ class Main{
         var argSubCmd = argc[1];
 
         var cmd = new Cmds();
+
+        var cmdList = getCommands(cmd);
+        console.log(`argCmd is ${argCmd}`);
+        if (cmdList.indexOf(argCmd) >= 0) {
+            console.log("Command found, index = " + cmdList.indexOf(argCmd));
+        } else {
+            console.log("Command not found, try to load from external files ...");
+            import(`./${argCmd}`).then((m) => {
+                console.log("module loaded");
+                m.default[argSubCmd](argc.splice(2));
+            }).catch((err) => {
+                console.error(err);
+            });
+        }
 
         if(cmd[argCmd] == null) {
             console.log(`There in no such command: ${argCmd}; Try command 'help' for more info.`);
