@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --outDir bin",
-    "build-watch": "tsc -w --outDir bin"
+    "watch": "tsc -w --outDir bin"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^8.5.1",
-    "typescript": "^2.6.2"
+    "typescript": "^3.4.5"
   }
 }
