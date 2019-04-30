@@ -1,1 +1,3 @@
-node bin/main %*
+echo off
+node bin/index %*
+echo on
