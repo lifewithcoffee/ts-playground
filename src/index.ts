@@ -11,3 +11,5 @@ app.get( "/", ( req, res ) => {
 app.listen( port, () => {
     console.log( `server started at http://localhost:${ port }` );
 } );
+
+export {}; // dummy export to remove ts compiler error when import this file from other files
