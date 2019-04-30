@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --outDir bin",
-    "watch": "tsc -w --outDir bin"
+    "watch": "tsc -w --outDir bin",
+    "dev": "set MODE_ENV=development && nodemon ./bin/www",
+    "start": "nodemon ./bin/www"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^8.5.1",
+    "nodemon": "^1.18.11",
     "typescript": "^3.4.5"
   }
 }
