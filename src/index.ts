@@ -1,4 +1,5 @@
 import {Factorial} from './factorial';
+import {greeting} from './grpc-client/grpc-client';
 
 class Cmds {
     help() {
@@ -25,6 +26,11 @@ class Cmds {
     foo() {
         console.log("Cmds.foo() called");
         import('./express');
+    }
+
+    doGreeting() {
+        greeting.sayHello();
+        greeting.howdy();
     }
 }
 
