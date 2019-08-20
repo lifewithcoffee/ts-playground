@@ -28,7 +28,7 @@ class Cmds {
         import('./express');
     }
 
-    doGreeting() {
+    greeting() {
         greeting.sayHello();
         greeting.howdy();
     }
