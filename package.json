@@ -21,7 +21,7 @@
     "@grpc/proto-loader": "^0.5.1",
     "express": "^4.16.4",
     "google-protobuf": "^3.9.1",
-    "grpc": "^1.22.2",
+    "grpc": "1.22.2",
     "path": "^0.12.7"
   }
 }
