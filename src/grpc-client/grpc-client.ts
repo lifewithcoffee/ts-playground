@@ -9,15 +9,16 @@ const PROTO_PATH = [
 
 const packageDefinition = protoLoader.loadSync(
   PROTO_PATH,
-  {keepCase: true,
-   longs: String,
-   enums: String,
-   defaults: true,
-   oneofs: true
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
   });
 
 // the ending 'helloworld' here might be the package defined in the .proto file
-const hello_proto:any = grpc.loadPackageDefinition(packageDefinition).helloworld;
+const hello_proto: any = grpc.loadPackageDefinition(packageDefinition).helloworld;
 
 function GreeterService() {
   return new hello_proto.Greeter('localhost:50051', grpc.credentials.createInsecure());
@@ -28,14 +29,14 @@ function RltestService() {
 }
 
 function sayHello() {
-  GreeterService().sayHello({name: 'from ts-node 1'}, (err, response) => {
+  GreeterService().sayHello({ name: 'from ts-playground 1' }, (err, response) => {
     // console.log('Error:', err);
     console.log('Response:', response.message);
   });
 }
 
 function howdy() {
-  RltestService().howdy({name: 'from ts-node 2'}, (err, response) => {
+  RltestService().howdy({ name: 'from ts-playground 2' }, (err, response) => {
     // console.log('Error:' + err);
     console.log('Response:', response.message);
   });

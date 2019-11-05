@@ -1,4 +1,4 @@
-# About ts-node
+# About ts-playground
 
 In one terminal, do:
 
@@ -10,5 +10,5 @@ In another terminal, do:
 
 ``` shell
 cmd             # if the vscode terminal is sh, do 'cmd' to enter Windows console
-do help
+do help         # or ".\do.cmd help" if using powershell
 ```
