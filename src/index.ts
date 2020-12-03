@@ -31,6 +31,9 @@ class Cmds {
     greeting() {
         greeting.sayHello();
         greeting.howdy();
+        setTimeout(() => {
+            console.log("greeting() finished");
+        }, 1000);
     }
 }
 
