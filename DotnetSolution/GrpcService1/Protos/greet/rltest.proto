@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService1";
+
+package greet;
+
+service Rltest {
+  rpc Howdy (HowdyRequest) returns (HowdyReply);
+}
+
+message HowdyRequest {
+  string name = 1;
+}
+
+message HowdyReply {
+  string message = 1;
+}

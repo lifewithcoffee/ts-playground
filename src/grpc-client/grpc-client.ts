@@ -3,7 +3,8 @@ import * as grpc from "@grpc/grpc-js";
 
 // const PROTO_PATH = __dirname + 'Protos/helloworld.proto';
 const PROTO_PATH = [
-  `${__dirname}/../../DotnetSolution/GrpcService1/Protos/greet.proto`,
+  `${__dirname}/../../DotnetSolution/GrpcService1/Protos/greet/greet.proto`,
+  `${__dirname}/../../DotnetSolution/GrpcService1/Protos/greet/Rltest.proto`,
 ];
 
 const packageDefinition = protoLoader.loadSync(
@@ -18,18 +19,18 @@ const packageDefinition = protoLoader.loadSync(
 );
 
 // the ending 'helloworld' here might be the package defined in the .proto file
-const hello_proto: any =
+const greet: any =
   grpc.loadPackageDefinition(packageDefinition).greet;
 
 function GreeterService() {
-  return new hello_proto.Greeter(
+  return new greet['Greeter'](    // or return new greet.Greeter(
     "localhost:5000",
     grpc.credentials.createInsecure(),
   );
 }
 
 function RltestService() {
-  return new hello_proto.Rltest(
+  return new greet.Rltest(
     "localhost:5000",
     grpc.credentials.createInsecure(),
     //grpc.credentials.createSsl(),

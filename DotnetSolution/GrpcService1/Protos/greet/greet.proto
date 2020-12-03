@@ -10,10 +10,6 @@ service Greeter {
   rpc SayHello (HelloRequest) returns (HelloReply);
 }
 
-service Rltest {
-  rpc Howdy (HowdyRequest) returns (HowdyReply);
-}
-
 // The request message containing the user's name.
 message HelloRequest {
   string name = 1;
@@ -21,13 +17,5 @@ message HelloRequest {
 
 // The response message containing the greetings.
 message HelloReply {
-  string message = 1;
-}
-
-message HowdyRequest {
-  string name = 1;
-}
-
-message HowdyReply {
   string message = 1;
 }
