@@ -1,5 +1,5 @@
 import * as protoLoader from "@grpc/proto-loader";
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 
 // const PROTO_PATH = __dirname + 'Protos/helloworld.proto';
 const PROTO_PATH = [
