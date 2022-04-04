@@ -65,7 +65,7 @@ function executeCommand(cmd) {
             console.log(`Module './${argCmd}' loaded`);
             var argSubCmd = argc[1];
             if(argSubCmd == null) {
-                argSubCmd = "default";
+                argSubCmd = "default";      // the default method name for "export default {}" is "default"
             }
             console.log(`Executing command: ${argCmd}.${argSubCmd}`);
             console.log("-----------------------------");
