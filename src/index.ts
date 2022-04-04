@@ -57,7 +57,7 @@ function executeCommand(cmd) {
     if(cmd[argCmd] != null) {
         console.log(`Executing command: ${cmd.constructor.name}.${argCmd}`);
         console.log("-----------------------------");
-        cmd[argCmd]();
+        cmd[argCmd](argc.splice(1));
     }else{
         console.log(`Not a local command: ${argCmd}; Please execute command 'help' for all available local commands.`);
         console.log("Trying to load the command from modules ...");
