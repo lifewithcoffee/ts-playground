@@ -1,5 +1,7 @@
-import {Factorial} from './factorial';
-import {greeting} from './grpc-client/grpc-client';
+import { Factorial } from './factorial';
+import { greeting } from './grpc-client/grpc-client';
+import rltest from './libs/lib1/rltest';
+import lib2 from './libs/lib2';  // _note_: no need to add file name
 
 class Cmds {
     help() {
@@ -23,9 +25,22 @@ class Cmds {
 
     }
 
+    lib1() {
+        rltest.fn1();
+    }
+
+    lib2() {
+        lib2.foo();
+    }
+
     foo() {
-        console.log("Cmds.foo() called");
-        import('./express');
+        console.log("Cmds.foo() called - example of dynamic importing");
+        import('./fileOperator').then(m => m.default.testFoo());
+    }
+    
+    express() {
+        console.log("Cmds.express() called");
+        import('./express').then(m => m.default.default());
     }
 
     greeting() {

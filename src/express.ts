@@ -1,5 +1,7 @@
 export default {
     default() {
+        console.log("express/default() called");
+
         const express = require( "express" );
         const app = express();
         const port = 8080; // default port to listen
