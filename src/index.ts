@@ -43,12 +43,10 @@ class Cmds {
         import('./express').then(m => m.default.default());
     }
 
-    greeting() {
+    grpc() {
+        console.log("Cmds.grpc() called");
         greeting.sayHello();
         greeting.howdy();
-        setTimeout(() => {
-            console.log("greeting() finished");
-        }, 1000);
     }
 }
 

@@ -1,14 +1,11 @@
 import * as protoLoader from "@grpc/proto-loader";
 import * as grpc from "@grpc/grpc-js";
 
-// const PROTO_PATH = __dirname + 'Protos/helloworld.proto';
-const PROTO_PATH = [
-  `${__dirname}/../../DotnetSolution/GrpcService1/Protos/greet/greet.proto`,
-  `${__dirname}/../../DotnetSolution/GrpcService1/Protos/greet/Rltest.proto`,
-];
-
 const packageDefinition = protoLoader.loadSync(
-  PROTO_PATH,
+  [
+    `${__dirname}/../../DotnetSolution/GrpcService1/Protos/greet/greet.proto`,
+    `${__dirname}/../../DotnetSolution/GrpcService1/Protos/greet/Rltest.proto`,
+  ],
   {
     keepCase: true,
     longs: String,
@@ -18,19 +15,18 @@ const packageDefinition = protoLoader.loadSync(
   },
 );
 
-// the ending 'helloworld' here might be the package defined in the .proto file
-const greet: any =
-  grpc.loadPackageDefinition(packageDefinition).greet;
+const loadedDef: grpc.GrpcObject = grpc.loadPackageDefinition(packageDefinition);
+const pkg_greet: any = loadedDef.greet;  // greet is the package name defined in the .proto files
 
 function GreeterService() {
-  return new greet['Greeter'](    // or return new greet.Greeter(
+  return new pkg_greet['Greeter'](    // or return new greet.Greeter(
     "localhost:5000",
     grpc.credentials.createInsecure(),
   );
 }
 
 function RltestService() {
-  return new greet.Rltest(
+  return new pkg_greet.Rltest(
     "localhost:5000",
     grpc.credentials.createInsecure(),
     //grpc.credentials.createSsl(),
@@ -40,10 +36,15 @@ function RltestService() {
 function sayHello() {
   console.log("calling sayHello() ...");
   GreeterService().sayHello(
-    { name: "from sayHello" },
-    (err, response) => {
-      console.log('Error:', err);
-      console.log("Response:", response.message);
+    { name: "from sayHello" }, (error, response) => {
+      if (error !== null)
+      {
+        console.log('Error:', error);
+      }
+      else
+      {
+        console.log("Response:", response.message);
+      }
     },
   );
 }
@@ -51,10 +52,15 @@ function sayHello() {
 function howdy() {
   console.log("calling howdy() ...");
   RltestService().howdy(
-    { name: "from howdy" },
-    (err, response) => {
-      console.log('Error:' + err);
-      console.log("Response:", response.message);
+    { name: "from howdy" }, (error, response) => {
+      if (error !== null)
+      {
+        console.log('Error:', error);
+      }
+      else
+      {
+        console.log("Response:", response.message);
+      }
     }
   );
 }
