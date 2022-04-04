@@ -1,3 +1,3 @@
-echo off
-node bin/index %*
-echo on
+@echo off
+node dist/index %*
+@echo on

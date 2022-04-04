@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --outDir bin",
-    "watch": "tsc -w --outDir bin",
-    "dev": "set MODE_ENV=development && nodemon ./bin/www",
-    "start": "nodemon ./bin/www"
+    "build": "tsc --outDir dist",
+    "watch": "tsc -w --outDir dist",
+    "dev": "set MODE_ENV=development && nodemon ./dist/www",
+    "start": "nodemon ./dist/www"
   },
   "author": "",
   "license": "ISC",
