@@ -4,7 +4,7 @@
 
 - [x] fix the compilation error caused by the missing gRPC .proto files
 
-## Execution
+## Execute
 
 In one terminal, do:
 
@@ -20,3 +20,7 @@ do help         # or ".\do.cmd help" if using powershell
 do express
 do fileOperator testFoo
 ```
+
+## Dev Notes
+
+- 2022-06-29 nodemon seems to be useless in this project
